@@ -34,6 +34,33 @@ public class CalculatorTest {
     public void testSubtract(){
         assertEquals(2.0, calculator.subtract(5,3), 0.001);
         assertEquals(1.0, calculator.subtract(-1, -2), 0.001);
+        assertEquals(-3.0, calculator.subtract(-1,2), 0.001);
+
+    }
+
+    @Test
+    public void testMultiply(){
+        assertEquals(12.0, calculator.multiply(3,4), 0.001);
+        assertEquals(0.0, calculator.multiply(10,0), 0.001);
+        assertEquals(-2.0, calculator.multiply(-1,2), 0.001);
+
+    }
+
+    @Test
+    public void testDivide(){
+        assertEquals(5.0, calculator.divide(10,2), 0.001);
+        assertEquals(-0.5, calculator.divide(-1,2), 0.001);
+        assertEquals(0.0, calculator.divide(0,1), 0.001);
+    }
+
+    //test per l'exception
+    /*
+    * la notazione indica che il test specifico si aspetta un exception
+    * Junit passerà il test se l'eccezione specifica viene lanciata durante
+    * l'esecuzione del test */
+    @Test(expected = ArithmeticException.class)
+    public void testExceptionDivideByZero(){
+        calculator.divide(1,0);
     }
 
 }
