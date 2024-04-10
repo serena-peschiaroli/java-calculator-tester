@@ -2,6 +2,8 @@ package experis.calculator;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+
 import static org.junit.Assert.*;
 
 public class CalculatorTest {
@@ -57,9 +59,11 @@ public class CalculatorTest {
     * la notazione indica che il test specifico si aspetta un exception
     * Junit passerà il test se l'eccezione specifica viene lanciata durante
     * l'esecuzione del test */
-    @Test(expected = ArithmeticException.class)
+    @Test
+    @DisplayName("Cannot divide by zero")
     public void testExceptionDivideByZero(){
-        calculator.divide(1,0);
+        assertThrows(ArithmeticException.class, () ->calculator.divide(1,0) );
+
     }
 
 }
