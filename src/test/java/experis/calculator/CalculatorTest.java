@@ -66,4 +66,35 @@ public class CalculatorTest {
 
     }
 
+    //edge cases
+
+
+    //testa come si comporta il metodo quando uno degli operandi è NaN
+    @Test
+    public void testMultiplyWithNaN() {
+        assertTrue(Float.isNaN(calculator.multiply(Float.NaN, 5)));
+    }
+
+    //testa il metodo subtract e come si comporta con numeri estremamente piccoli
+
+    @Test
+    public void testSubtractNearZero() {
+        assertTrue(0.0 != calculator.subtract(1e-40f, 1e-40f));
+    }
+
+    // verifica il comportamento di multiply() quando l'operazione risulta in overflow
+
+    @Test
+    public void testMultiplyOverflow() {
+        assertEquals(Float.POSITIVE_INFINITY, calculator.multiply(Float.MAX_VALUE, 2), 0);
+    }
+
+    @Test
+    public void testSubtractUnderflow() {
+        // l'underflow può perdere precisione o risultare zero
+        assertEquals(0, calculator.subtract(1e-40f, 2e-40f), 0);
+    }
+
+
+
 }
