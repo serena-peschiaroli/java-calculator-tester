@@ -1,4 +1,4 @@
-package experiscalculator;
+package experis.calculator;
 
 public class Calculator {
 
