@@ -66,6 +66,40 @@ public class TicketTest {
 
     }
 
+    //test su zero Km
+    @Test
+    public void calculatePriceForZeroKm(){
+        Ticket ticket = new Ticket(18, 0);
+        BigDecimal expected = new BigDecimal("0.00");
+        assertEquals(expected, ticket.calculatePrice());
+
+    }
+
+    //test sui decimali
+
+    @Test
+    public void calculatePriceScale(){
+        Ticket ticket = new Ticket(25, 50);
+        BigDecimal price = ticket.calculatePrice();
+        /* il primo argomento è il valore che ci si aspetta per la scale, il secondo
+        * argomento è il valore che viene testato, il terzo argomento è un messaggio
+        * opzionale che jUnit mostrerà in caso di fallimento del test*/
+        assertEquals(2, price.scale(), "The scale should be 2");
+    }
+
+    /*Test idempotenza -->  chiamare questo metodo più volte con lo stesso insieme di parametri di input
+     produrrà lo stesso risultato ogni volta senza modificare lo stato dell'oggetto
+     */
+
+    @Test
+    public void calculatePriceIdempotency(){
+        Ticket ticket = new Ticket(70, 100);
+        BigDecimal firstCall = ticket.calculatePrice();
+        BigDecimal secondCall = ticket.calculatePrice();
+
+        assertEquals(firstCall, secondCall, "calculatePrice should return same result on successive calls");
+    }
+
     @Test
     public void calculatePriceSenior(){
         Ticket ticket = new Ticket(70, 100);
@@ -77,7 +111,7 @@ public class TicketTest {
 
     @Test
     @DisplayName("Ticket with invalid parameters")
-    public void testInvalidKmException(){
+    public void testInvalidParametersException(){
         assertThrows(IllegalArgumentException.class, () -> new Ticket(34, -100));
         assertThrows(IllegalArgumentException.class, () -> new Ticket(-23, 34));
 

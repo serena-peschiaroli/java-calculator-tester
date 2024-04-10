@@ -13,5 +13,12 @@ public class TicketMain {
 
         Ticket ticket3 = new Ticket(70, 100);
         System.out.println(ticket3.calculatePrice());
+
+        Ticket ticket4 = new Ticket(25, 50);
+        System.out.println(ticket4.calculatePrice());
+
+        Ticket ticket5 = new Ticket(28, 0);
+        System.out.println(ticket5.calculatePrice());
+
     }
 }
